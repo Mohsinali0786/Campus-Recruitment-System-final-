@@ -1,7 +1,4 @@
 import React from 'react';
-import Home from '../screen/Home'
-import About from '../screen/About'
-import Contact from '../screen/Contact'
 import Studentform from '../component/student/Studentform'
 import Comform from '../component/Companies/comform'
 
@@ -32,27 +29,6 @@ function AppNavigation() {
           },
         }}
 />
-        <Stack.Screen name="About" component={About}
-        options={{
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-        <Stack.Screen name="Contact" component={Contact}         
-        options={{
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            alignSelf:'center'
-          },
-        }}/>
          <Stack.Screen name="Student" component={Student}         
         options={{
           headerStyle: {

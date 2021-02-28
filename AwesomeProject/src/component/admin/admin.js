@@ -32,11 +32,14 @@ function Student(props){
     }
     useEffect(()=>{
         props.get_data()
-      },[deleted])
+      },[])
    
-      const Delete=(id,keys)=>{
+      const Delete=(keys)=>{
+        var myrec=props.students[0]
+        console.log('Myrec===>',myrec)
         database().ref('/Student/'+keys).remove()
         set_deleted('deleted')
+        console.log("Set_del==>",deleted)
         alert('Record deleted')
   
         
@@ -100,7 +103,7 @@ function Student(props){
                               <Text style={{color:'black',paddingBottom:5}}>{"Grade: " + v.Grade}</Text>
                               
                               <Text style={{color:'black',paddingBottom:5}}>{"Grade: " + v.mykey}</Text>
-                              <Button style={styles.logoutbtn} onPress={()=>Delete(i,v.mykey)}>
+                              <Button style={styles.logoutbtn} onPress={()=>Delete(v.mykey)}>
                                   <Text style={styles.logoutbtns}>Delete</Text>
                               </Button>
                          </View>

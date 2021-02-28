@@ -41,7 +41,7 @@ function Company(props){
         {/* <Container  style={styles.container}> */}
         <Text style={{fontSize:25,textAlign:'center',marginTop:50}}>Register Yourself</Text>
             <View style={{marginTop:20}}>
-            <Image style={styles.comimg} source={require('../../../Images/company.png')}/> 
+            {/* <Image style={styles.comimg} source={require('../../../Images/company.png')}/>  */}
                
                 <Button onPress={()=>props.facebook_login()} style={{backgroundColor:'green'}} block success>
                  <Text>Login With FaceBook</Text>

@@ -23,7 +23,7 @@ function dashboard(props){
             </View>
             <View style={styles.div}>
            <Button style={styles.btn}onPress={()=>{props.navigation.navigate('Company')}}>
-                <Image style={styles.img} source={require('../../Images/company.png')}/> 
+                {/* <Image style={styles.img} source={require('../../Images/company.png')}/>  */}
                 <Text style={{fontSize:25}}>Company</Text>
            </Button>
            </View>
