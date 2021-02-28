@@ -13,11 +13,14 @@ function Studentform(){
     Institute:'',
     Highest_Qualificatio:'',
     Grade:'',
-    key:'',
+    mykey:''
+
 
   })
   const handle_click=()=>{
+ 
         var key=database().ref('images/').push().key
+       mydata.mykey=key
         database().ref('/').child('Student/' + key).set(mydata).then(()=>{
         })
         set_mydata({
@@ -28,7 +31,8 @@ function Studentform(){
           Institute:'',
           Highest_Qualificatio:'',
           Grade:'',
-          key:''
+          mykey:''
+  
         })
         alert("Submitted successfully")
   }

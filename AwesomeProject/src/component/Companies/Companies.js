@@ -37,16 +37,18 @@ function Company(props){
 
       <Container  style={styles.container}>
         <ScrollView>
-        <Text style={{fontSize:30,textAlign:'center'}}>Welcome To Company</Text>
-        <Container  style={styles.container}>
-        <Text style={{fontSize:40,textAlign:'center'}}>Register Yourself</Text>
+        <Text style={{fontSize:35,textAlign:'center'}}>Company Login</Text>
+        {/* <Container  style={styles.container}> */}
+        <Text style={{fontSize:25,textAlign:'center',marginTop:50}}>Register Yourself</Text>
             <View style={{marginTop:20}}>
+            <Image style={styles.comimg} source={require('../../../Images/company.png')}/> 
+               
                 <Button onPress={()=>props.facebook_login()} style={{backgroundColor:'green'}} block success>
                  <Text>Login With FaceBook</Text>
                 </Button>
 
             </View>
-        </Container>
+        {/* </Container> */}
    
         </ScrollView>
         </Container>
@@ -111,7 +113,9 @@ const styles=StyleSheet.create({
       height: 100,
       resizeMode: 'cover',
       },
-      
+      comimg:{
+          width:300,
+      },
         
 
       searchInput:{

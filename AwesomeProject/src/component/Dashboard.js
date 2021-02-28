@@ -18,19 +18,19 @@ function dashboard(props){
             <View style={styles.div}>
                 <Button onPress={()=>{props.navigation.navigate('Admin')}} style={styles.btn}>
                     <Image style={styles.img} source={require('../../Images/dmin_1.png')}/>
-                    <Text>Admin</Text>
+                    <Text style={{fontSize:25}}>Admin</Text>
                 </Button>
             </View>
             <View style={styles.div}>
            <Button style={styles.btn}onPress={()=>{props.navigation.navigate('Company')}}>
                 <Image style={styles.img} source={require('../../Images/company.png')}/> 
-                <Text>Company</Text>
+                <Text style={{fontSize:25}}>Company</Text>
            </Button>
            </View>
            <View style={styles.div}>
            <Button style={styles.btn}onPress={()=>{props.navigation.navigate('Student')}}>
                 <Image style={styles.img} source={require('../../Images/student-login.png')}/>
-                <Text>Student</Text>
+                <Text style={{fontSize:25}}>Student</Text>
            </Button>
            </View>
         </View>

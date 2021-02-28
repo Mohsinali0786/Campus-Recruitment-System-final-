@@ -2,9 +2,10 @@ import React,{useState} from 'react';
 import {StyleSheet,Text} from 'react-native';
 import database from '@react-native-firebase/database';
 import { Container,Form,Item,Input,Button} from 'native-base';
-
-var key;
+var mykey;
 function Comform(){
+  
+  
   const [mydata,set_mydata]=useState({
     Company_Name:'',
     Job_Title:'',
@@ -12,11 +13,11 @@ function Comform(){
     Job_Req:'',
     Salary:'',
     Criteria_percentage:'',
-    key:key,
+
   })
   const handle_click=()=>{
-        key=database().ref('images/').push().key
-        database().ref('/').child('Companies/' + key).set(mydata).then(()=>{
+    mykey=database().ref('images/').push().key
+        database().ref('/').child('Companies/' + mykey).set(mydata).then(()=>{
         })
         set_mydata({
           Company_Name:'',
@@ -25,7 +26,11 @@ function Comform(){
           Job_Req:'',
           Salary:'',
           Criteria_percentage:'',
-          key:'',
+    
+
+      
+
+
         })
         alert("Submitted successfully")
   }
@@ -37,7 +42,11 @@ function Comform(){
 
         
            <Form style={{borderColor:'black',borderRadius:1,borderWidth:1,marginTop:30,paddingTop:20,paddingBottom:20}}>
-          
+           {/* <Item >
+              <Input value={mykey} onChangeText={(e)=>set_mydata((prevState) => ({
+             ...prevState,keys:e
+    }))} />
+            </Item> */}
            <Item >
               <Input placeholder="Company_Name" value={mydata.Company_Name} onChangeText={(e)=>set_mydata((prevState) => ({
              ...prevState,Company_Name:e

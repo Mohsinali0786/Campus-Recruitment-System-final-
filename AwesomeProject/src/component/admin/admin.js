@@ -1,56 +1,121 @@
 import React,{useState,useEffect} from 'react';
 import {StyleSheet,View,Image,ScrollView,Text} from 'react-native';
-import database from '@react-native-firebase/database';
-import { Container,Header,Button} from 'native-base';
+import database from '@react-native-firebase/database'
+
+import { Container,Form,Item,Input,Button} from 'native-base';
 import{connect} from 'react-redux'
 
 import {facebook_login,get_data,get_data_for_students} from '../../../store/action'
 
 
 function Student(props){
+
+    const [admin,set_admin]=useState({
+        user_name:'',
+        password:'',
+    })
+    const [deleted,set_deleted]=useState(null)
+
+
+    const [trues,set_true]=useState({
+        value:false
+    })
+    const submit=()=>{
+       if(admin.user_name.toLowerCase()==="admin"&&admin.password.toLowerCase()==='admin123')
+       {
+           set_true({value:true})
+       }
+       else{
+           set_true({value:false})
+           alert("Sorry you are not admin")
+       }
+    }
     useEffect(()=>{
         props.get_data()
-      },[])
+      },[deleted])
+   
+      const Delete=(id,keys)=>{
+        database().ref('/Student/'+keys).remove()
+        set_deleted('deleted')
+        alert('Record deleted')
+  
+        
 
-      const Delete=(id)=>{
-        console.log('Deleted ', id)
+        // const newList = [alldata.filter((item) => item.id !== id)]
+        // setalldata(newList)
         // database.collection('Students').doc(id).delete()
 
       }
-    console.log("props===>",props.companies)
-    return(
-      <Container  style={styles.container}>
-      <ScrollView>
-      <Text style={{fontSize:30,textAlign:'center'}}>Admin Section</Text>
-      <View>
-      {
-            
-            props.students[0].map((v,i)=>{
-                return(
-                  <View key={i}>
-                    <View  style={{borderWidth:1,backgroundColor:'yellow',marginTop:20}}>
-                    
-                        <Text style={{color:'black',textAlign:'center',fontWeight:'bold',fontSize:17}}>{"Student-Full-Name: " + v.First_name + " " + v.Last_name}</Text>
-                        <Text  style={{color:'black',paddingBottom:5}}>{"Highest_Qualification " + v.Highest_Qualificatio}</Text>
-                        <Text style={{color:'black',paddingBottom:5}}>{"Email: " + v.Email}</Text>
-                        <Text style={{color:'black',paddingBottom:5}}>{"Number: " + v.Numbers}</Text>
-                        
-                        <Text style={{color:'black',paddingBottom:5}}>{"Institute/College: " + v.Institute}</Text>
-                        
-                        <Text style={{color:'black',paddingBottom:5}}>{"Grade: " + v.Grade}</Text>
-                        <Button style={styles.logoutbtn} onPress={()=>Delete(v.key)}>
-                            <Text style={styles.logoutbtns}>Delete</Text>
-                        </Button>
-                   </View>
-                  </View>
-                )
-              })
+    if(trues.value===false)
+    {
+        return(
+            <View> 
+
+
+<Text style={{fontSize:35,textAlign:'center'}}>Admin Login</Text>
+        <Text style={{fontSize:25,textAlign:'center',marginTop:50}}>Signin Yourself</Text>
+      
+
+
+
+                <Form style={{borderColor:'black',borderRadius:1,borderWidth:1,marginTop:30,paddingTop:20,paddingBottom:20}}>
+                <Item >
+                    <Input placeholder="type username='admin'"  onChangeText={(e)=>set_admin((prevState) => ({
+                    ...prevState,user_name:e
+            }))} />
+                </Item>
+                <Item >
+                    <Input placeholder="type username='admin123'"  onChangeText={(e)=>set_admin((prevState) => ({
+                    ...prevState,password:e
+            }))} />
+                </Item>
+                </Form>
+                <Button onPress={()=>submit()} full danger style={{marginTop:20}}>
+            <Text>Submit</Text>
+          </Button>
+            </View>
+        )
+
+    }
+    else{
+        return(
+            <Container  style={styles.container}>
+            <ScrollView>
+            <Text style={{fontSize:30,textAlign:'center'}}>Admin Section</Text>
+            <View>
+            {
+                  
+                  props.students[0].map((v,i)=>{
+                      return(
+                        <View key={i}>
+                          <View  style={{borderWidth:1,backgroundColor:'yellow',marginTop:20}}>
+                          
+                              <Text style={{color:'black',textAlign:'center',fontWeight:'bold',fontSize:17}}>{"Student-Full-Name: " + v.First_name + " " + v.Last_name}</Text>
+                              <Text  style={{color:'black',paddingBottom:5}}>{"Highest_Qualification " + v.Highest_Qualificatio}</Text>
+                              <Text style={{color:'black',paddingBottom:5}}>{"Email: " + v.Email}</Text>
+                              <Text style={{color:'black',paddingBottom:5}}>{"Number: " + v.Numbers}</Text>
+                              
+                              <Text style={{color:'black',paddingBottom:5}}>{"Institute/College: " + v.Institute}</Text>
+                              
+                              <Text style={{color:'black',paddingBottom:5}}>{"Grade: " + v.Grade}</Text>
+                              
+                              <Text style={{color:'black',paddingBottom:5}}>{"Grade: " + v.mykey}</Text>
+                              <Button style={styles.logoutbtn} onPress={()=>Delete(i,v.mykey)}>
+                                  <Text style={styles.logoutbtns}>Delete</Text>
+                              </Button>
+                         </View>
+                        </View>
+                      )
+                }
+    
+            )
            }
-      </View>
+        </View>
       </ScrollView>
       </Container>
 
     )
+}
 }
   
 const styles=StyleSheet.create({

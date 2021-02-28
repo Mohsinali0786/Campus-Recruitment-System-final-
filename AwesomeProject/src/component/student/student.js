@@ -37,16 +37,18 @@ function Student(props){
 
       <Container  style={styles.container}>
         <ScrollView>
-        <Text style={{fontSize:30,textAlign:'center'}}>Welcome To Student facebook_login</Text>
-        <Container  style={styles.container}>
-        <Text style={{fontSize:40,textAlign:'center'}}>Register Yourself</Text>
+        <Text style={{fontSize:35,textAlign:'center'}}>Student Login</Text>
+        {/* <Container  style={styles.container}> */}
+        <Text style={{fontSize:25,textAlign:'center',marginTop:50}}>Register Yourself</Text>
             <View style={{marginTop:20}}>
+            <Image style={styles.comimg} source={require('../../../Images/student-login.png')}/> 
+            
                 <Button onPress={()=>props.facebook_login()} style={{backgroundColor:'green'}} block success>
                  <Text>Login With FaceBook</Text>
                 </Button>
 
             </View>
-        </Container>
+        {/* </Container> */}
    
         </ScrollView>
         </Container>
@@ -60,7 +62,7 @@ function Student(props){
      
       <Button style={styles.logoutbtn} onPress={()=>facebook_logout()}>
              <Text style={styles.logoutbtns}>Facebook Logout</Text>
-           </Button>
+        </Button>
       <Button style={styles.btn} onPress={()=>props.navigation.navigate('Studentform')}>
         <Image style={styles.img} source={require('../../../Images/logo.png')}/> 
                 
@@ -111,7 +113,13 @@ const styles=StyleSheet.create({
       height: 100,
       resizeMode: 'cover',
       },
-      
+      comimg:{
+        marginTop:50,
+        marginBottom:30,
+        marginLeft:70,
+        width:200,
+        height:150,
+    },
         
 
       searchInput:{
@@ -143,7 +151,7 @@ const styles=StyleSheet.create({
         textAlign:'left',
         fontSize:20,
         fontWeight:'bold',
-        color:'black'
+        color:'black',
       },
       logoutbtn:{
         margin:20,
